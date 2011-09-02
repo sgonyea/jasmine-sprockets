@@ -17,5 +17,5 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "jasmine",   '~>1.0.2.1'
   s.add_runtime_dependency "sprockets", '~>2.0.0'
-  s.add_runtime_dependency "sprockets", '~>1.3.0'
+  s.add_runtime_dependency "rack",      '~>1.3.0'
 end
