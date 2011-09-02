@@ -1,3 +1,4 @@
+require 'sprockets'
 require 'rack'
 
 module Rack
