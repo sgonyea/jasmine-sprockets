@@ -8,17 +8,14 @@ Gem::Specification.new do |s|
   s.authors     = ["Scott Gonyea"]
   s.email       = ["sgonyea@truecar.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "jasmine-sprockets"
+  s.summary     = %q{Adds Sprockets to Jasmine's Asset Serving}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  s.add_runtime_dependency "jasmine",   '~>1.0.2.1'
+  s.add_runtime_dependency "sprockets", '~>2.0.0'
+  s.add_runtime_dependency "sprockets", '~>1.3.0'
 end
