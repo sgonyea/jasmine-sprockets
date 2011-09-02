@@ -1,12 +1,4 @@
-require 'rubygems'
-require 'bundler/setup'
-
-Bundler.require :jasmine, :development, :test
-
-require 'coffee-script'
-require 'tilt'
-
-::Tilt::CoffeeScriptTemplate.default_bare = true
+require 'rack'
 
 module Rack
 
