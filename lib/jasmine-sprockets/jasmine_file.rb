@@ -1,11 +1,11 @@
-require 'sprockets'
-require 'rack'
+require "rack"
+require "sprockets"
 
 module Rack
 
   class JasmineFile < Rack::File
     def sprocket
-      @sprocket ||= Sprockets::Environment.new.tap{|s| s.append_path @root}
+      @sprocket ||= ::Sprockets::Environment.new.tap{|s| s.append_path @root}
     end
 
     def serving
