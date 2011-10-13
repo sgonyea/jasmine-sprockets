@@ -1,8 +1,8 @@
 require "jasmine"
-require "jasmine-sprockets/version"
-require "jasmine-sprockets/jasmine_file"
 require "rack"
 require "sprockets"
+require "jasmine-sprockets/jasmine_file"
+require "jasmine-sprockets/version"
 
 module Jasmine
 
