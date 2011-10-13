@@ -1,5 +1,6 @@
 require "rack"
 require "sprockets"
+require "sprockets/environment"
 
 module Rack
 
