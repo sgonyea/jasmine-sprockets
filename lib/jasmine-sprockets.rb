@@ -13,7 +13,7 @@ module Jasmine
       map('/run.html')         { run Jasmine::Redirect.new('/') }
       map('/__suite__')        { run Jasmine::FocusedSuite.new(config) }
 
-      map('/__JASMINE_ROOT__') { run Rack::JasmineFile.new(Jasmine.root) }
+      map('/__JASMINE_ROOT__') { run Rack::JasmineFile.new(Jasmine::Core.path) }
       map(config.spec_path)    { run Rack::JasmineFile.new(config.spec_dir) }
       map(config.root_path)    { run Rack::JasmineFile.new(config.project_root) }
 
