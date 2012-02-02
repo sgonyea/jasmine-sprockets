@@ -6,8 +6,14 @@ module Rack
 
   class JasmineFile < Rack::File
     @@cache = {}
+    def initialize(root, cache_control = nil)
+      @root_directories = [root].flatten
+      @root = @root_directories.first
+      @cache_control = cache_control
+    end
+
     def sprocket
-      @sprocket ||= ::Sprockets::Environment.new.tap{|s| s.append_path @root}
+      @sprocket ||= ::Sprockets::Environment.new.tap{|s| @root_directories.each{|d| s.append_path d } }
     end
 
     def serving(env)
