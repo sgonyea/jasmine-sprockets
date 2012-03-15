@@ -1,7 +1,7 @@
 require "jasmine"
 require "rack"
 require "sprockets"
-require "jasmine-sprockets/jasmine_file"
+require "sprockets/environment"
 require "jasmine-sprockets/version"
 
 module Jasmine
@@ -13,13 +13,16 @@ module Jasmine
       map('/run.html')         { run Jasmine::Redirect.new('/') }
       map('/__suite__')        { run Jasmine::FocusedSuite.new(config) }
 
-      map('/__JASMINE_ROOT__') { run Rack::JasmineFile.new(Jasmine::Core.path) }
-      map(config.spec_path)    { run Rack::JasmineFile.new(config.spec_dir) }
-      map(config.root_path)    { run Rack::JasmineFile.new(config.project_root) }
+      map('/__JASMINE_ROOT__') { run ::Sprockets::Environment.new.tap{|s| s.append_path Jasmine::Core.path } }
+      map(config.spec_path)    { run ::Sprockets::Environment.new.tap{|s| s.append_path config.spec_dir } }
+      map(config.root_path)    { run ::Sprockets::Environment.new.tap{|s| s.append_path config.project_root } }
+
+      project = ::Sprockets::Environment.new
+      ([config.src_dir]+config.sprocket_dirs).each{|p| project.append_path p }
 
       map('/') do
         run Rack::Cascade.new([
-          Rack::URLMap.new('/' => Rack::JasmineFile.new([config.src_dir]+config.sprocket_dirs)),
+          Rack::URLMap.new('/' => project),
           Jasmine::RunAdapter.new(config)
         ])
       end
